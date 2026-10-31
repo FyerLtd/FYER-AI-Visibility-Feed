@@ -1,7 +1,10 @@
-from datetime import date
+from datetime import date, datetime, timezone
 
 from open_ai_governance_feed.dedupe import deduplicate_records
-from open_ai_governance_feed.models import GovernanceRecord
+from open_ai_governance_feed.models import (
+    GovernanceRecord,
+    SourceEvidence,
+)
 
 
 def make_record(
