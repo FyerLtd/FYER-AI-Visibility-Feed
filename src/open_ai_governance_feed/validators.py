@@ -1,42 +1,72 @@
-"""Core data models for Open AI Governance Feed."""
+"""Validation rules for governance records."""
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import date, datetime
+import re
+from urllib.parse import urlparse
+
+from .models import ALLOWED_RISK_RATINGS, GovernanceRecord
 
 
-ALLOWED_RISK_RATINGS = {"unknown", "low", "medium", "high"}
+DOMAIN_PATTERN = re.compile(
+    r"^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+"
+    r"[a-zA-Z]{2,63}$"
+)
 
 
-@dataclass(frozen=True)
-class SourceEvidence:
-    """Provenance for a single public-source observation."""
+def validate_evidence(record: GovernanceRecord) -> list[str]:
+    """Return validation errors for structured source evidence."""
 
-    source_name: str
-    source_url: str
-    observed_at: datetime
+    errors: list[str] = []
 
+    for evidence in record.evidence:
+        if not evidence.source_name.strip():
+            errors.append("evidence source_name is required")
 
-@dataclass
-class GovernanceRecord:
-    """A single AI service observation used for governance purposes."""
+        parsed = urlparse(evidence.source_url)
 
-    tool_name: str
-    domain: str
-    category: str
-    sources: list[str] = field(default_factory=list)
-    risk_rating: str = "unknown"
-    last_seen: date | None = None
-    notes: str = ""
-    evidence: list[SourceEvidence] = field(default_factory=list)
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            errors.append(
+                "evidence source_url must be a valid HTTP or HTTPS URL"
+            )
+
+    return errors
 
 
-@dataclass(frozen=True)
-class RecordConflict:
-    """A disagreement between observations for one canonical domain."""
+def validate_record(record: GovernanceRecord) -> list[str]:
+    """Return validation errors for a governance record."""
 
-    domain: str
-    field_name: str
-    observed_values: tuple[str, ...]
-    sources: tuple[str, ...]
+    errors: list[str] = []
+
+    if not record.tool_name.strip():
+        errors.append("tool_name is required")
+
+    domain = record.domain.strip().lower()
+
+    if not domain:
+        errors.append("domain is required")
+    elif not DOMAIN_PATTERN.fullmatch(domain):
+        errors.append("domain must be a valid hostname")
+
+    if not record.category.strip():
+        errors.append("category is required")
+
+    if not record.sources:
+        errors.append("at least one source is required")
+    else:
+        for source in record.sources:
+            parsed = urlparse(source)
+            if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+                errors.append(
+                    "sources must contain valid HTTP or HTTPS URLs"
+                )
+                break
+
+    if record.risk_rating not in ALLOWED_RISK_RATINGS:
+        errors.append(
+            "risk_rating must be one of: unknown, low, medium, high"
+        )
+
+    errors.extend(validate_evidence(record))
+
+    return errors
