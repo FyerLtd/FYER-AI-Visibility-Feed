@@ -1,0 +1,22 @@
+# Default owner for the repository.
+* @Mintri-fyer
+
+# Governance and contribution controls.
+/CONTRIBUTING.md @Mintri-fyer
+/SECURITY.md @Mintri-fyer
+/.github/ @Mintri-fyer
+
+# Source approval and governed seed data.
+/data/sources.json @Mintri-fyer
+/data/manual-seed.json @Mintri-fyer
+
+# Security-sensitive pipeline components.
+/src/fyer_ai_visibility_feed/validators.py @Mintri-fyer
+/src/fyer_ai_visibility_feed/source_registry.py @Mintri-fyer
+/src/fyer_ai_visibility_feed/seed_pipeline.py @Mintri-fyer
+/src/fyer_ai_visibility_feed/conflicts.py @Mintri-fyer
+/src/fyer_ai_visibility_feed/dedupe.py @Mintri-fyer
+/src/fyer_ai_visibility_feed/exporters.py @Mintri-fyer
+
+# Build and package configuration.
+/pyproject.toml @Mintri-fyer
