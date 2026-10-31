@@ -126,6 +126,3 @@ def test_different_subdomains_are_not_merged():
     result = deduplicate_records(records)
 
     assert len(result) == 2
-
-
-def
