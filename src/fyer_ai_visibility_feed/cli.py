@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Sequence
 
 from . import __version__
 from .exporters import export_csv, export_json
+from .integrity import write_integrity_files
 from .loaders import load_json
 from .seed_pipeline import build_manual_seed
 from .source_registry import load_source_registry
@@ -70,8 +72,9 @@ def _build_seed_feed(
     seed_path: Path,
     registry_path: Path,
     output_dir: Path,
+    source_commit: str,
 ) -> int:
-    """Build canonical feeds from governed manual seed observations."""
+    """Build canonical feeds and integrity metadata from governed seeds."""
 
     records = load_json(seed_path)
     policies = load_source_registry(registry_path)
@@ -86,11 +89,20 @@ def _build_seed_feed(
         return 1
 
     csv_path, json_path = _write_feed(result.records, output_dir)
+    manifest_path, checksums_path = write_integrity_files(
+        output_dir,
+        result.records,
+        result.conflicts,
+        generated_at=datetime.now(timezone.utc),
+        source_commit=source_commit,
+    )
 
     print(f"Built {len(result.records)} canonical record(s).")
     print(f"Conflicts: {len(result.conflicts)}")
     print(f"CSV: {csv_path}")
     print(f"JSON: {json_path}")
+    print(f"Manifest: {manifest_path}")
+    print(f"Checksums: {checksums_path}")
 
     return 0
 
@@ -154,11 +166,17 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         help="Directory for generated feed files.",
     )
+    build_seed_parser.add_argument(
+        "--source-commit",
+        default="unknown",
+        help="Source commit recorded in the integrity manifest.",
+    )
     build_seed_parser.set_defaults(
         func=lambda args: _build_seed_feed(
             args.seed,
             args.registry,
             args.output_dir,
+            args.source_commit,
         )
     )
 

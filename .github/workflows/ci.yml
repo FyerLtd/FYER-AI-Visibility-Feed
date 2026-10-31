@@ -40,12 +40,17 @@ jobs:
           python -m fyer_ai_visibility_feed.cli build-seed \
             --seed data/manual-seed.json \
             --registry data/sources.json \
-            --output-dir outputs
+            --output-dir outputs \
+            --source-commit "${GITHUB_SHA}"
 
       - name: Verify feed outputs
         run: |
           test -s outputs/feed.csv
           test -s outputs/feed.json
+          test -s outputs/manifest.json
+          test -s outputs/SHA256SUMS
+          cd outputs
+          sha256sum --check SHA256SUMS
 
       - name: Upload governed feed artifact
         uses: actions/upload-artifact@v7
@@ -54,5 +59,7 @@ jobs:
           path: |
             outputs/feed.csv
             outputs/feed.json
+            outputs/manifest.json
+            outputs/SHA256SUMS
           if-no-files-found: error
           retention-days: 14
