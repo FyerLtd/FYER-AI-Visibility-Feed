@@ -84,7 +84,7 @@ def test_cli_version_returns_zero() -> None:
 def test_cli_version_output() -> None:
     result = run_cli("version")
 
-    assert "Open AI Governance Feed 0.1.0" in result.stdout
+    assert "FYER AI Visibility Feed 0.1.0" in result.stdout
 
 
 def test_cli_export_returns_zero_for_valid_input(tmp_path) -> None:
