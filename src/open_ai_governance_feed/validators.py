@@ -101,19 +101,13 @@ def validate_source_policy(
             "homepage_url must be a valid HTTP or HTTPS URL"
         )
 
-    if (
-        policy.collection_status
-        not in ALLOWED_COLLECTION_STATUSES
-    ):
+    if policy.collection_status not in ALLOWED_COLLECTION_STATUSES:
         errors.append(
             "collection_status must be one of: "
             "pending-review, approved, prohibited"
         )
 
-    if (
-        policy.collection_method
-        not in ALLOWED_COLLECTION_METHODS
-    ):
+    if policy.collection_method not in ALLOWED_COLLECTION_METHODS:
         errors.append(
             "collection_method must be one of: "
             "manual, api, html, feed"
@@ -124,11 +118,7 @@ def validate_source_policy(
         and not _is_http_url(policy.terms_url)
     ):
         errors.append(
-            "terms_url must be a valid HTTP or HTTPS URL"
-        )
-
-    if (
-        policy.robots_url is not None
+            "terms_url must be a valid  policy.robots_url is not None
         and not _is_http_url(policy.robots_url)
     ):
         errors.append(
@@ -144,14 +134,15 @@ def validate_source_policy(
         if not policy.reviewer or not policy.reviewer.strip():
             errors.append(
                 "approved sources require reviewer"
-         :
+            )
+
+        if not policy.permitted_metadata:
             errors.append(
                 "approved sources require permitted_metadata"
             )
 
         if (
-            policy.collection_method
-            in {"api", "html", "feed"}
+            policy.collection_method in {"api", "html", "feed"}
             and policy.terms_url is None
         ):
             errors.append(
