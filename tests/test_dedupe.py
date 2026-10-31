@@ -1,7 +1,10 @@
-from datetime import date
+from datetime import date, datetime, timezone
 
 from open_ai_governance_feed.dedupe import deduplicate_records
-from open_ai_governance_feed.models import GovernanceRecord
+from open_ai_governance_feed.models import (
+    GovernanceRecord,
+    SourceEvidence,
+)
 
 
 def make_record(
@@ -125,20 +128,4 @@ def test_different_subdomains_are_not_merged():
     assert len(result) == 2
 
 
-def test_similar_names_with_different_domains_are_not_merged():
-    records = [
-        make_record(
-            name="Amazing AI",
-            domain="amazing-ai.com",
-            source="https://directory-a.example/tool",
-        ),
-        make_record(
-            name="AmazingAI",
-            domain="amazingai.com",
-            source="https://directory-b.example/tool",
-        ),
-    ]
-
-    result = deduplicate_records(records)
-
-    assert len(result) == 2
+def
