@@ -2,13 +2,22 @@
   {
     "name": "Manual Seed Dataset",
     "homepage_url": "https://github.com/FyerLtd/open-source-governance-feed",
-    "collection_status": "pending-review",
+    "collection_status": "approved",
     "collection_method": "manual",
     "terms_url": null,
     "robots_url": null,
-    "permitted_metadata": [],
-    "reviewed_at": null,
-    "reviewer": null,
-    "notes": "Initial registry entry. Registration does not authorise collection."
+    "permitted_metadata": [
+      "tool_name",
+      "domain",
+      "category",
+      "source_url",
+      "risk_rating",
+      "last_seen",
+      "notes",
+      "observed_at"
+    ],
+    "reviewed_at": "2026-10-31",
+    "reviewer": "Daniel Swithinbank",
+    "notes": "Approved only for manually researched and individually reviewed public metadata. This approval does not authorise automated collection, crawling, scraping, proprietary content reuse, rankings, reviews, or bulk copying from external directories."
   }
 ]
