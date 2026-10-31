@@ -13,7 +13,7 @@ from .validators import validate_record
 
 
 def _print_version() -> int:
-    print(f"Open AI Governance Feed {__version__}")
+    print(f"FYER AI Visibility Feed {__version__}")
     return 0
 
 
@@ -98,7 +98,7 @@ def _build_seed_feed(
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="open_ai_governance_feed.cli",
-        description="Open AI Governance Feed CLI.",
+        description="FYER AI Visibility Feed CLI.",
     )
 
     subparsers = parser.add_subparsers(dest="command")
