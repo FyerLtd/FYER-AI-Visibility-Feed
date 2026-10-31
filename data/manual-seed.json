@@ -1,0 +1,56 @@
+[
+  {
+    "tool_name": "Microsoft Copilot",
+    "domain": "copilot.cloud.microsoft",
+    "category": "general-purpose-ai",
+    "sources": [
+      "https://www.microsoft.com/en-gb/copilot"
+    ],
+    "risk_rating": "unknown",
+    "last_seen": "2026-10-31",
+    "notes": "Manually seeded from an official first-party product page. Inclusion is for governance visibility and is not a blocking recommendation.",
+    "evidence": [
+      {
+        "source_name": "Manual Seed Dataset",
+        "source_url": "https://www.microsoft.com/en-gb/copilot",
+        "observed_at": "2026-10-31T10:08:00+00:00"
+      }
+    ]
+  },
+  {
+    "tool_name": "ChatGPT",
+    "domain": "chatgpt.com",
+    "category": "general-purpose-ai",
+    "sources": [
+      "https://openai.com/index/chatgpt/"
+    ],
+    "risk_rating": "unknown",
+    "last_seen": "2026-10-31",
+    "notes": "Manually seeded from an official first-party product page. Inclusion is for governance visibility and is not a blocking recommendation.",
+    "evidence": [
+      {
+        "source_name": "Manual Seed Dataset",
+        "source_url": "https://openai.com/index/chatgpt/",
+        "observed_at": "2026-10-31T10:08:00+00:00"
+      }
+    ]
+  },
+  {
+    "tool_name": "Claude",
+    "domain": "claude.ai",
+    "category": "general-purpose-ai",
+    "sources": [
+      "https://www.anthropic.com/"
+    ],
+    "risk_rating": "unknown",
+    "last_seen": "2026-10-31",
+    "notes": "Manually seeded from an official first-party product page. Inclusion is for governance visibility and is not a blocking recommendation.",
+    "evidence": [
+      {
+        "source_name": "Manual Seed Dataset",
+        "source_url": "https://www.anthropic.com/",
+        "observed_at": "2026-10-31T10:08:00+00:00"
+      }
+    ]
+  }
+]
