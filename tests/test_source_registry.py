@@ -33,15 +33,27 @@ def test_repository_source_registry_loads():
     assert policies[0].name == "Manual Seed Dataset"
 
 
-def test_repository_source_defaults_remain_fail_closed():
+def test_repository_manual_seed_policy_is_narrowly_approved():
     policies = load_source_registry(REGISTRY_PATH)
 
     policy = policies[0]
 
-    assert policy.collection_status == "pending-review"
+    assert policy.collection_status == "approved"
     assert policy.collection_method == "manual"
-    assert policy.reviewed_at is None
-    assert policy.reviewer is None
+    assert policy.reviewed_at == date(2026, 10, 31)
+    assert policy.reviewer == "Daniel Swithinbank"
+    assert policy.terms_url is None
+    assert policy.robots_url is None
+    assert policy.permitted_metadata == [
+        "tool_name",
+        "domain",
+        "category",
+        "source_url",
+        "risk_rating",
+        "last_seen",
+        "notes",
+        "observed_at",
+    ]
 
 
 def test_repository_source_registry_is_valid():
@@ -50,10 +62,10 @@ def test_repository_source_registry_is_valid():
     assert validate_source_registry(policies) == []
 
 
-def test_repository_source_is_not_collection_eligible():
+def test_repository_manual_seed_source_is_collection_eligible():
     policies = load_source_registry(REGISTRY_PATH)
 
-    assert collection_eligible_sources(policies) == []
+    assert collection_eligible_sources(policies) == [policies[0]]
 
 
 def test_registry_loads_review_date(tmp_path):
