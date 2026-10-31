@@ -7,6 +7,9 @@ on:
 
 permissions:
   contents: read
+  id-token: write
+  attestations: write
+  artifact-metadata: write
 
 jobs:
   test:
@@ -51,6 +54,16 @@ jobs:
           test -s outputs/SHA256SUMS
           cd outputs
           sha256sum --check SHA256SUMS
+
+      - name: Generate build provenance attestations
+        if: github.ref == 'refs/heads/main'
+        uses: actions/attest@v4
+        with:
+          subject-path: |
+            outputs/feed.csv
+            outputs/feed.json
+            outputs/manifest.json
+            outputs/SHA256SUMS
 
       - name: Upload governed feed artifact
         uses: actions/upload-artifact@v7
