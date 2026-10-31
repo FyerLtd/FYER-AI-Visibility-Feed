@@ -3,10 +3,19 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, datetime
 
 
 ALLOWED_RISK_RATINGS = {"unknown", "low", "medium", "high"}
+
+
+@dataclass(frozen=True)
+class SourceEvidence:
+    """Provenance for a single public-source observation."""
+
+    source_name: str
+    source_url: str
+    observed_at: datetime
 
 
 @dataclass
@@ -20,6 +29,7 @@ class GovernanceRecord:
     risk_rating: str = "unknown"
     last_seen: date | None = None
     notes: str = ""
+    evidence: list[SourceEvidence] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
