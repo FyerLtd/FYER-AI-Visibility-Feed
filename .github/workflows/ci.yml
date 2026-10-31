@@ -37,7 +37,7 @@ jobs:
 
       - name: Build governed feed
         run: |
-          python -m open_ai_governance_feed.cli build-seed \
+          python -m fyer-ai-visibility-feed.cli build-seed \
             --seed data/manual-seed.json \
             --registry data/sources.json \
             --output-dir outputs
