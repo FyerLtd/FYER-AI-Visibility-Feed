@@ -1,9 +1,34 @@
 [project]
-name = "open-ai-governance-feed"
+name = "fyer-ai-visibility-feed"
 version = "0.1.0"
-description = "Governance-focused catalogue of publicly discoverable AI services and domains."
+description = "Evidence-led catalogue of publicly discoverable AI services and domains for Shadow AI visibility and governance review."
 readme = "README.md"
 requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+  { name = "FYER Ltd" },
+]
+keywords = [
+  "ai-governance",
+  "shadow-ai",
+  "cybersecurity",
+  "domain-intelligence",
+  "responsible-ai",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Security",
+]
+
+[project.urls]
+Homepage = "https://fyer.co.uk"
+Repository = "https://github.com/FyerLtd/FYER-AI-Visibility-Feed"
+Issues = "https://github.com/FyerLtd/FYER-AI-Visibility-Feed/issues"
 
 [project.optional-dependencies]
 dev = [
