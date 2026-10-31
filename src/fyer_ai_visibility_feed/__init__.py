@@ -1,4 +1,4 @@
-"""Open AI Governance Feed package."""
+"""FYER AI Visibility Feed package."""
 
 __version__ = "0.1.0"
 

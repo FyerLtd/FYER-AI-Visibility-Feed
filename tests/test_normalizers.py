@@ -1,6 +1,6 @@
 import pytest
 
-from open_ai_governance_feed.normalizers import normalize_domain
+from fyer_ai_visibility_feed.normalizers import normalize_domain
 
 
 @pytest.mark.parametrize(

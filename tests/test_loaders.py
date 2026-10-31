@@ -1,8 +1,8 @@
 from datetime import date, datetime, timezone
 
-from open_ai_governance_feed.exporters import export_json
-from open_ai_governance_feed.loaders import load_json
-from open_ai_governance_feed.models import (
+from fyer_ai_visibility_feed.exporters import export_json
+from fyer_ai_visibility_feed.loaders import load_json
+from fyer_ai_visibility_feed.models import (
     GovernanceRecord,
     SourceEvidence,
 )

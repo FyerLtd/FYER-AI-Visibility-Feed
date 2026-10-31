@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from open_ai_governance_feed.loaders import load_json
-from open_ai_governance_feed.seed_pipeline import build_manual_seed
-from open_ai_governance_feed.source_registry import load_source_registry
+from fyer_ai_visibility_feed.loaders import load_json
+from fyer_ai_visibility_feed.seed_pipeline import build_manual_seed
+from fyer_ai_visibility_feed.source_registry import load_source_registry
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]

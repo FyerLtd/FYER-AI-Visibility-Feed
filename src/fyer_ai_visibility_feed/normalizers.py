@@ -1,4 +1,4 @@
-"""Normalization helpers for Open AI Governance Feed."""
+"""Normalization helpers for FYER AI Visibility Feed."""
 
 from __future__ import annotations
 

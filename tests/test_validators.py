@@ -1,7 +1,7 @@
 from datetime import date
 
-from open_ai_governance_feed.models import GovernanceRecord
-from open_ai_governance_feed.validators import validate_record
+from fyer_ai_visibility_feed.models import GovernanceRecord
+from fyer_ai_visibility_feed.validators import validate_record
 
 
 def test_valid_record_passes_validation():

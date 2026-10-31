@@ -1,5 +1,5 @@
-from open_ai_governance_feed.conflicts import detect_conflicts
-from open_ai_governance_feed.models import GovernanceRecord
+from fyer_ai_visibility_feed.conflicts import detect_conflicts
+from fyer_ai_visibility_feed.models import GovernanceRecord
 
 
 def make_record(

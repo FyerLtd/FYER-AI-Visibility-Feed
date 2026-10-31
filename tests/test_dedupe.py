@@ -1,7 +1,7 @@
 from datetime import date, datetime, timezone
 
-from open_ai_governance_feed.dedupe import deduplicate_records
-from open_ai_governance_feed.models import (
+from fyer_ai_visibility_feed.dedupe import deduplicate_records
+from fyer_ai_visibility_feed.models import (
     GovernanceRecord,
     SourceEvidence,
 )

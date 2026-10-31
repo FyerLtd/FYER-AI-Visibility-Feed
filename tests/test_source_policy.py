@@ -1,7 +1,7 @@
 from datetime import date
 
-from open_ai_governance_feed.models import SourcePolicy
-from open_ai_governance_feed.validators import (
+from fyer_ai_visibility_feed.models import SourcePolicy
+from fyer_ai_visibility_feed.validators import (
     source_is_collection_eligible,
     validate_source_policy,
 )

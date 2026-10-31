@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from open_ai_governance_feed.models import SourcePolicy
-from open_ai_governance_feed.source_registry import (
+from fyer_ai_visibility_feed.models import SourcePolicy
+from fyer_ai_visibility_feed.source_registry import (
     collection_eligible_sources,
     load_source_registry,
     validate_source_registry,

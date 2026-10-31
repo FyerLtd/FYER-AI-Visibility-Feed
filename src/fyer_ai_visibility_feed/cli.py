@@ -97,7 +97,7 @@ def _build_seed_feed(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="open_ai_governance_feed.cli",
+        prog="fyer_ai_visibility_feed.cli",
         description="FYER AI Visibility Feed CLI.",
     )
 

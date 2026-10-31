@@ -1,11 +1,11 @@
 from datetime import date, datetime, timezone
 
-from open_ai_governance_feed.models import (
+from fyer_ai_visibility_feed.models import (
     GovernanceRecord,
     SourceEvidence,
     SourcePolicy,
 )
-from open_ai_governance_feed.seed_pipeline import build_manual_seed
+from fyer_ai_visibility_feed.seed_pipeline import build_manual_seed
 
 
 def make_policy(

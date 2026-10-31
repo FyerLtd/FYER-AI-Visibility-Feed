@@ -204,7 +204,7 @@ pytest -q
 Build the governed manual feed:
 
 ```bash
-python -m open_ai_governance_feed.cli build-seed \
+python -m fyer_ai_visibility_feed.cli build-seed \
   --seed data/manual-seed.json \
   --registry data/sources.json \
   --output-dir outputs
@@ -213,7 +213,7 @@ python -m open_ai_governance_feed.cli build-seed \
 On Windows PowerShell, use one line:
 
 ```powershell
-python -m open_ai_governance_feed.cli build-seed --seed data/manual-seed.json --registry data/sources.json --output-dir outputs
+python -m fyer_ai_visibility_feed.cli build-seed --seed data/manual-seed.json --registry data/sources.json --output-dir outputs
 ```
 
 Successful execution creates:

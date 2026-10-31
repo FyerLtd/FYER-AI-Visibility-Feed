@@ -1,4 +1,4 @@
-"""Core data models for Open AI Governance Feed."""
+"""Core data models for FYER AI Visibility Feed."""
 
 from __future__ import annotations
 

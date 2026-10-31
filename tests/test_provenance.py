@@ -1,10 +1,10 @@
 from datetime import datetime, timezone
 
-from open_ai_governance_feed.models import (
+from fyer_ai_visibility_feed.models import (
     GovernanceRecord,
     SourceEvidence,
 )
-from open_ai_governance_feed.validators import validate_record
+from fyer_ai_visibility_feed.validators import validate_record
 
 
 def make_record(

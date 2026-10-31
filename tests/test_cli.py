@@ -25,7 +25,7 @@ def run_cli(*args: str) -> subprocess.CompletedProcess[str]:
         [
             sys.executable,
             "-m",
-            "open_ai_governance_feed.cli",
+            "fyer_ai_visibility_feed.cli",
             *args,
         ],
         cwd=REPO_ROOT,
