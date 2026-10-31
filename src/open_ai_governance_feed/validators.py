@@ -85,7 +85,6 @@ def validate_record(record: GovernanceRecord) -> list[str]:
 
     return errors
 
-
 def validate_source_policy(
     policy: SourcePolicy,
 ) -> list[str]:
@@ -113,17 +112,17 @@ def validate_source_policy(
             "manual, api, html, feed"
         )
 
-    if (
-        policy.terms_url is not None
-        and not _is_http_url(policy.terms_url)
-    ):
-        errors.append(
-            "terms_url must be a valid  policy.robots_url is not None
-        and not _is_http_url(policy.robots_url)
-    ):
-        errors.append(
-            "robots_url must be a valid HTTP or HTTPS URL"
-        )
+    if policy.terms_url is not None:
+        if not _is_http_url(policy.terms_url):
+            errors.append(
+                "terms_url must be a valid HTTP or HTTPS URL"
+            )
+
+    if policy.robots_url is not None:
+        if not _is_http_url(policy.robots_url):
+            errors.append(
+                "robots_url must be a valid HTTP or HTTPS URL"
+            )
 
     if policy.collection_status == "approved":
         if policy.reviewed_at is None:
@@ -131,34 +130,39 @@ def validate_source_policy(
                 "approved sources require reviewed_at"
             )
 
-        if not policy.reviewer or not policy.reviewer.strip():
+        if not policy.reviewer:
+            errors.append(
+                "approved sources require reviewer"
+            )
+        elif not policy.reviewer.strip():
             errors.append(
                 "approved sources require reviewer"
             )
 
         if not policy.permitted_metadata:
             errors.append(
-                "approved sources require permitted_metadata"
+                "approved sources require etadata"
             )
 
-        if (
-            policy.collection_method in {"api", "html", "feed"}
-            and policy.terms_url is None
-        ):
-            errors.append(
-                "approved automated sources require terms_url"
-            )
+        automated_methods = {
+            "api",
+            "html",
+            "feed",
+        }
 
-        if (
-            policy.collection_method == "html"
-            and policy.robots_url is None
-        ):
-            errors.append(
-                "approved HTML sources require robots_url"
-            )
+        if policy.collection_method in automated_methods:
+            if policy.terms_url is None:
+                errors.append(
+                    "approved automated sources require terms_url"
+                )
+
+        if policy.collection_method == "html":
+            if policy.robots_url is None:
+                errors.append(
+                    "approved HTML sources require robots_url"
+                )
 
     return errors
-
 
 def source_is_collection_eligible(
     policy: SourcePolicy,
