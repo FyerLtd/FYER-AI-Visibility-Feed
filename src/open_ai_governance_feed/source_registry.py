@@ -52,7 +52,7 @@ def load_source_registry(
             ),
             terms_url=item.get("terms_url"),
             robots_url=item.get("robots_url"),
-          =list(
+            permitted_metadata=list(
                 item.get("permitted_metadata", [])
             ),
             reviewed_at=(
