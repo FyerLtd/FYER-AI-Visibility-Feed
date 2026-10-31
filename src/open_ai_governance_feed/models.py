@@ -20,3 +20,13 @@ class GovernanceRecord:
     risk_rating: str = "unknown"
     last_seen: date | None = None
     notes: str = ""
+
+
+@dataclass(frozen=True)
+class RecordConflict:
+    """A disagreement between observations for one canonical domain."""
+
+    domain: str
+    field_name: str
+    observed_values: tuple[str, ...]
+    sources: tuple[str, ...]
