@@ -73,4 +73,4 @@ def test_cli_help_returns_zero() -> None:
     assert "usage:" in result.stdout.lower()
 
 
-def test_cli_version_returns_zero() -> None
+def test_cli_version_returns_zero() -> None:
