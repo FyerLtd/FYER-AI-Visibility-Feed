@@ -139,10 +139,10 @@ def validate_source_policy(
                 "approved sources require reviewer"
             )
 
-        if not policy.permitted_metadata:
-            errors.append(
-                "approved sources require etadata"
-            )
+if not policy.permitted_metadata:
+    errors.append(
+        "approved sources require permitted_metadata"
+    )
 
         automated_methods = {
             "api",
