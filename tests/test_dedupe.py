@@ -1,10 +1,7 @@
-from datetime import date, datetime, timezone
+from datetime import date
 
 from open_ai_governance_feed.dedupe import deduplicate_records
-from open_ai_governance_feed.models import (
-    GovernanceRecord,
-    SourceEvidence,
-)
+from open_ai_governance_feed.models import GovernanceRecord
 
 
 def make_record(
@@ -126,3 +123,71 @@ def test_different_subdomains_are_not_merged():
     result = deduplicate_records(records)
 
     assert len(result) == 2
+
+
+def test_similar_names_with_different_domains_are_not_merged():
+    records = [
+        make_record(
+            name="Amazing AI",
+            domain="amazing-ai.com",
+            source="https://directory-a.example/tool",
+        ),
+        make_record(
+            name="AmazingAI",
+            domain="amazingai.com",
+            source="https://directory-b.example/tool",
+        ),
+    ]
+
+    result = deduplicate_records(records)
+
+    assert len(result) == 2
+
+def test_structured_evidence_is_preserved_when_records_merge():
+    first_evidence = SourceEvidence(
+        source_name="Directory A",
+        source_url="https://directory-a.example/tool",
+        observed_at=datetime(
+            2026,
+            10,
+            31,
+            8,
+            0,
+            tzinfo=timezone.utc,
+        ),
+    )
+
+    second_evidence = SourceEvidence(
+        source_name="Directory B",
+        source_url="https://directory-b.example/tool",
+        observed_at=datetime(
+            2026,
+            10,
+            31,
+            8,
+            5,
+            tzinfo=timezone.utc,
+        ),
+    )
+
+    first = make_record(
+        name="Example AI",
+        domain="example.ai",
+        source="https://directory-a.example/tool",
+    )
+    first.evidence = [first_evidence]
+
+    second = make_record(
+        name="Example AI",
+        domain="www.example.ai",
+        source="https://directory-b.example/tool",
+    )
+    second.evidence = [second_evidence]
+
+    result = deduplicate_records([first, second])
+
+    assert len(result) == 1
+    assert result[0].evidence == [
+        first_evidence,
+        second_evidence,
+    ]
