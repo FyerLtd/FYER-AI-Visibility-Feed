@@ -38,7 +38,9 @@ def validate_record(record: GovernanceRecord) -> list[str]:
         for source in record.sources:
             parsed = urlparse(source)
             if parsed.scheme not in {"http", "https"} or not parsed.netloc:
-                errors.append("sources must contain valid HTTP or HTTPS URLs")
+                errors.append(
+                    "sources must contain valid HTTP or HTTPS URLs"
+                )
                 break
 
     if record.risk_rating not in ALLOWED_RISK_RATINGS:
