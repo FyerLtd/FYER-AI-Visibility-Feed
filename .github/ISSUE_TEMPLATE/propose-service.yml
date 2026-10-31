@@ -1,0 +1,88 @@
+name: Propose an AI service
+description: Propose a publicly discoverable AI service or domain for governed review.
+title: "[Service]: "
+labels:
+  - data-proposal
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a service for FYER AI Visibility Feed.
+
+        Inclusion supports visibility and review. It is not a recommendation to allow or block a service.
+
+  - type: input
+    id: service_name
+    attributes:
+      label: Service name
+      description: The public name of the AI service.
+      placeholder: Example AI
+    validations:
+      required: true
+
+  - type: input
+    id: primary_domain
+    attributes:
+      label: Primary service domain
+      description: Provide a hostname only, without a path or query string.
+      placeholder: example.ai
+    validations:
+      required: true
+
+  - type: input
+    id: category
+    attributes:
+      label: Proposed category
+      description: Use a broad factual category. Avoid risk or quality judgements.
+      placeholder: general-purpose-ai
+    validations:
+      required: true
+
+  - type: input
+    id: evidence_url
+    attributes:
+      label: Official evidence URL
+      description: Prefer an official product, documentation, sign-in, or vendor announcement page.
+      placeholder: https://example.ai/product
+    validations:
+      required: true
+
+  - type: input
+    id: observed_at
+    attributes:
+      label: Date observed
+      description: Use YYYY-MM-DD.
+      placeholder: "2026-10-31"
+    validations:
+      required: true
+
+  - type: textarea
+    id: factual_note
+    attributes:
+      label: Factual note
+      description: Briefly explain what the evidence establishes. Do not copy marketing text.
+      placeholder: The official page identifies Example AI as a publicly available AI service.
+    validations:
+      required: true
+
+  - type: textarea
+    id: ambiguity
+    attributes:
+      label: Ambiguity or conflicting evidence
+      description: Describe alternate domains, naming differences, service retirement, or contradictory sources. Write None if not known.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Submission checks
+      options:
+        - label: I used publicly accessible, attributable evidence.
+          required: true
+        - label: I did not copy proprietary descriptions, rankings, ratings, reviews, or bulk directory data.
+          required: true
+        - label: I understand that inclusion is not an allow or block recommendation.
+          required: true
+        - label: I have not assigned a risk rating other than unknown without an approved methodology and supporting evidence.
+          required: true

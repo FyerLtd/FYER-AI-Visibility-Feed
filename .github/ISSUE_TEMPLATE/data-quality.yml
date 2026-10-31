@@ -1,0 +1,59 @@
+name: Report a data-quality problem
+description: Report a systematic quality, provenance, normalisation, conflict, or feed-output issue.
+title: "[Data quality]: "
+labels:
+  - data-quality
+body:
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Missing provenance
+        - Incorrect normalisation
+        - Incorrect deduplication
+        - Hidden or missing conflict
+        - Stale evidence
+        - Incorrect canonical output
+        - Feed generation problem
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected_data
+    attributes:
+      label: Affected record, domain, source, or artifact
+      description: Identify the relevant record and include a Git commit or Actions run where possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: Add public evidence URLs and minimal reproduction details. Do not include secrets or private data.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security_check
+    attributes:
+      label: Security check
+      options:
+        - label: This report does not disclose an exploitable vulnerability. Security vulnerabilities will be reported privately under SECURITY.md.
+          required: true

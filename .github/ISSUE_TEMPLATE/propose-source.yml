@@ -1,0 +1,102 @@
+name: Propose a public metadata source
+description: Propose a source for policy review. Registration does not authorise collection.
+title: "[Source]: "
+labels:
+  - source-proposal
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A source proposal is not approval to collect from that source.
+
+        New sources begin as pending-review. Automated collection requires explicit maintainer approval and a tested adapter.
+
+  - type: input
+    id: source_name
+    attributes:
+      label: Source name
+      placeholder: Example Directory
+    validations:
+      required: true
+
+  - type: input
+    id: homepage_url
+    attributes:
+      label: Homepage URL
+      placeholder: https://directory.example/
+    validations:
+      required: true
+
+  - type: dropdown
+    id: collection_method
+    attributes:
+      label: Proposed collection method
+      options:
+        - manual
+        - api
+        - feed
+        - html
+    validations:
+      required: true
+
+  - type: textarea
+    id: permitted_metadata
+    attributes:
+      label: Proposed permitted metadata
+      description: List the minimum fields proposed for collection.
+      placeholder: |
+        - tool_name
+        - domain
+        - category
+    validations:
+      required: true
+
+  - type: input
+    id: terms_url
+    attributes:
+      label: Terms or usage-policy URL
+      description: Required for proposed automated collection where available.
+      placeholder: https://directory.example/terms
+
+  - type: input
+    id: robots_url
+    attributes:
+      label: Robots URL
+      description: Required for proposed HTML collection.
+      placeholder: https://directory.example/robots.txt
+
+  - type: textarea
+    id: licensing
+    attributes:
+      label: Licensing and attribution requirements
+      description: Describe known permissions, restrictions, attribution, and reuse conditions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: value
+    attributes:
+      label: Why is this source useful?
+      description: Explain the source's relevance without copying its descriptions or rankings.
+    validations:
+      required: true
+
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Known limitations or risks
+      description: Include coverage gaps, stale data, promotional bias, access restrictions, or provenance concerns.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Source-governance checks
+      options:
+        - label: I understand that this proposal begins as pending-review.
+          required: true
+        - label: I have not treated public accessibility as permission for automated collection or reuse.
+          required: true
+        - label: I have not copied proprietary descriptions, rankings, reviews, or bulk source data.
+          required: true
