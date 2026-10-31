@@ -53,7 +53,7 @@ def load_source_registry(
             terms_url=item.get("terms_url"),
             robots_url=item.get("robots_url"),
             permitted_metadata=list(
-                item.get("permitted_metadata", [])
+        rmitted_metadata", [])
             ),
             reviewed_at=(
                 date.fromisoformat(reviewed_at_value)
@@ -87,7 +87,9 @@ def validate_source_registry(
         else:
             seen_names.add(normalized_name)
 
-        for error in validate_source_policy(policy):
+        policy_errors = validate_source_policy(policy)
+
+        for error in policy_errors:
             errors.append(
                 f"source {index} ({policy.name}): {error}"
             )
@@ -99,8 +101,10 @@ def collection_eligible_sources(
     policies: list[SourcePolicy],
 ) -> list"""Return only approved and valid collection sources."""
 
-    return [
-        policy
-        for policy in policies
-        if source_is_collection_eligible(policy)
-    ]
+    eligible: list[SourcePolicy] = []
+
+    for policy in policies:
+        if source_is_collection_eligible(policy):
+            eligible.append(policy)
+
+    return eligible
