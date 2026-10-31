@@ -8,6 +8,19 @@ from datetime import date, datetime
 
 ALLOWED_RISK_RATINGS = {"unknown", "low", "medium", "high"}
 
+ALLOWED_COLLECTION_STATUSES = {
+    "pending-review",
+    "approved",
+    "prohibited",
+}
+
+ALLOWED_COLLECTION_METHODS = {
+    "manual",
+    "api",
+    "html",
+    "feed",
+}
+
 
 @dataclass(frozen=True)
 class SourceEvidence:
@@ -40,3 +53,19 @@ class RecordConflict:
     field_name: str
     observed_values: tuple[str, ...]
     sources: tuple[str, ...]
+
+
+@dataclass
+class SourcePolicy:
+    """Governance policy for a potential public metadata source."""
+
+    name: str
+    homepage_url: str
+    collection_status: str = "pending-review"
+    collection_method: str = "manual"
+    terms_url: str | None = None
+    robots_url: str | None = None
+    permitted_metadata: list[str] = field(default_factory=list)
+    reviewed_at: date | None = None
+    reviewer: str | None = None
+    notes: str = ""
