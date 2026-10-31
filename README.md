@@ -1,2 +1,2 @@
 # open-source-governance-feed
-Open-source repository that aggregates publicly available AI tool directories into governance-focused feeds for security and AI governance teams.
+A source-attributed catalogue of publicly discoverable AI services for Shadow AI visibility, governance review and security-tool integration. It is not an indiscriminate AI blocklist.
