@@ -52,7 +52,7 @@ def load_source_registry(
             ),
             terms_url=item.get("terms_url"),
             robots_url=item.get("robots_url"),
-            permitted_metadata=list(
+          =list(
                 item.get("permitted_metadata", [])
             ),
             reviewed_at=(
@@ -60,7 +60,8 @@ def load_source_registry(
                 if reviewed_at_value
                 else None
             ),
-            reviewer=item.get      notes=item.get("notes", ""),
+            reviewer=item.get("reviewer"),
+            notes=item.get("notes", ""),
         )
 
         policies.append(policy)
