@@ -1,0 +1,74 @@
+name: Correct or retire an entry
+description: Report an inaccurate, stale, duplicated, or retired service record.
+title: "[Correction]: "
+labels:
+  - data-correction
+body:
+  - type: input
+    id: service
+    attributes:
+      label: Affected service or domain
+      placeholder: example.ai
+    validations:
+      required: true
+
+  - type: dropdown
+    id: correction_type
+    attributes:
+      label: Correction type
+      options:
+        - Incorrect service name
+        - Incorrect domain
+        - Outdated evidence
+        - Retired or unavailable service
+        - Duplicate record
+        - Incorrect category
+        - Other data-quality issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: What is currently incorrect?
+      description: Quote field names and values where useful, but do not include confidential data.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_correction
+    attributes:
+      label: Proposed correction
+      description: State the factual change requested.
+    validations:
+      required: true
+
+  - type: input
+    id: evidence_url
+    attributes:
+      label: Supporting evidence URL
+      description: Prefer current first-party evidence.
+      placeholder: https://example.ai/documentation
+    validations:
+      required: true
+
+  - type: input
+    id: observed_at
+    attributes:
+      label: Date observed
+      description: Use YYYY-MM-DD.
+      placeholder: "2026-10-31"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Submission checks
+      options:
+        - label: The correction is based on publicly accessible evidence.
+          required: true
+        - label: No private, confidential, or personal information is included.
+          required: true
+        - label: This report is a data-quality correction, not an unsupported risk or blocking recommendation.
+          required: true
