@@ -14,8 +14,8 @@ def deduplicate_records(
     """Merge records sharing the same normalized hostname.
 
     Deduplication is intentionally conservative. Records are merged only
-    when their normalized hostname is identical. Source provenance is
-    preserved across merged observations.
+    when their normalized hostname is identical. Source provenance and
+    structured evidence are preserved across merged observations.
     """
 
     deduplicated: dict[str, GovernanceRecord] = {}
@@ -28,6 +28,7 @@ def deduplicate_records(
                 record,
                 domain=canonical_domain,
                 sources=list(dict.fromkeys(record.sources)),
+                evidence=list(record.evidence),
             )
             continue
 
@@ -36,6 +37,12 @@ def deduplicate_records(
         merged_sources = list(
             dict.fromkeys(existing.sources + record.sources)
         )
+
+        merged_evidence = list(existing.evidence)
+
+        for evidence in record.evidence:
+            if evidence not in merged_evidence:
+                merged_evidence.append(evidence)
 
         # Keep the most recent observation date when both are available.
         last_seen_values = [
@@ -53,6 +60,7 @@ def deduplicate_records(
         deduplicated[canonical_domain] = replace(
             existing,
             sources=merged_sources,
+            evidence=merged_evidence,
             last_seen=latest_last_seen,
         )
 
