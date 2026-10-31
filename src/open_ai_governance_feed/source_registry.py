@@ -60,8 +60,7 @@ def load_source_registry(
                 if reviewed_at_value
                 else None
             ),
-            reviewer=item.get("reviewer"),
-            notes=item.get("notes", ""),
+            reviewer=item.get      notes=item.get("notes", ""),
         )
 
         policies.append(policy)
@@ -71,15 +70,13 @@ def load_source_registry(
 
 def validate_source_registry(
     policies: list[SourcePolicy],
-) -> list[str]:
-    """Return validation errors for all registered sources."""
+) -> list"""Return validation errors for all registered sources."""
 
     errors: list[str] = []
-
     seen_names: set[str] = set()
 
     for index, policy in enumerate(policies, start=1):
-     e.strip().lower()
+        normalized_name = policy.name.strip().lower()
 
         if normalized_name in seen_names:
             errors.append(
