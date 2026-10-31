@@ -85,6 +85,7 @@ def validate_record(record: GovernanceRecord) -> list[str]:
 
     return errors
 
+
 def validate_source_policy(
     policy: SourcePolicy,
 ) -> list[str]:
@@ -139,10 +140,10 @@ def validate_source_policy(
                 "approved sources require reviewer"
             )
 
-if not policy.permitted_metadata:
-    errors.append(
-        "approved sources require permitted_metadata"
-    )
+        if not policy.permitted_metadata:
+            errors.append(
+                "approved sources require permitted_metadata"
+            )
 
         automated_methods = {
             "api",
@@ -163,6 +164,7 @@ if not policy.permitted_metadata:
                 )
 
     return errors
+
 
 def source_is_collection_eligible(
     policy: SourcePolicy,
