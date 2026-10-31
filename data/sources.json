@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Manual Seed Dataset",
+    "homepage_url": "https://github.com/FyerLtd/open-source-governance-feed",
+    "collection_status": "pending-review",
+    "collection_method": "manual",
+    "terms_url": null,
+    "robots_url": null,
+    "permitted_metadata": [],
+    "reviewed_at": null,
+    "reviewer": null,
+    "notes": "Initial registry entry. Registration does not authorise collection."
+  }
+]
