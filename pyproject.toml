@@ -1,8 +1,7 @@
 [project]
 name = "fyer-ai-visibility-feed"
 version = "0.1.0"
-description = "Evidence-led catalogue of publicly discoverable AI services and domains for Shadow AI visibility and governance review."
-readme = "README.md"
+description = "Build governed AI-service domain lists from operator-defined sources for Shadow AI discovery, governance review, and security-tool integration."
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
 authors = [
