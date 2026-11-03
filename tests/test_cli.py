@@ -249,9 +249,9 @@ def test_cli_build_seed_creates_real_feed_files(tmp_path) -> None:
     )
 
     assert [item["domain"] for item in payload] == [
-        "copilot.cloud.microsoft",
-        "chatgpt.com",
-        "claude.ai",
+        "assistant.example.com",
+        "search.example.org",
+        "studio.example.net",
     ]
 
 

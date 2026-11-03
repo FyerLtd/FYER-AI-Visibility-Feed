@@ -34,9 +34,9 @@ def test_repository_manual_seed_builds_expected_domains():
     result = build_repository_seed()
 
     assert [record.domain for record in result.records] == [
-        "copilot.cloud.microsoft",
-        "chatgpt.com",
-        "claude.ai",
+        "assistant.example.com",
+        "search.example.org",
+        "studio.example.net",
     ]
 
 
