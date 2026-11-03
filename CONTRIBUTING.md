@@ -1,285 +1,701 @@
-# Contributing to FYER AI Visibility Feed
+# Contributing to FYER AI Visibility Feed 
 
-Thank you for helping improve FYER AI Visibility Feed.
+  
 
-This project maintains an evidence-led catalogue of publicly discoverable AI services and domains for Shadow AI visibility, governance review, and security-tool integration.
+Thank you for helping improve FYER AI Visibility Feed. 
 
-> Inclusion supports visibility and review. It is not a recommendation to allow or block a service.
+  
 
-## Ways to contribute
+FYER AI Visibility Feed is an open-source foundation for building evidence-led lists of AI services and domains from operator-defined sources for Shadow AI visibility, governance review, and security-tool integration. 
 
-Useful contributions include:
+  
 
-- proposing a publicly discoverable AI service;
-- correcting an existing service name or domain;
-- adding or improving first-party evidence;
-- identifying stale or retired services;
-- improving tests, documentation, validation, or export formats;
-- proposing a potential public metadata source;
-- improving approved source adapters;
-- reporting data-quality or security issues.
+The project provides the governed processing foundation. It does not maintain or accept a central catalogue of third-party AI services. 
 
-## Before contributing
+  
 
-Please:
+Feed inclusion supports visibility and review. It is not a recommendation to allow or block a service. 
 
-1. search existing Issues and Pull Requests;
-2. confirm the proposed change is not already being discussed;
-3. use public, attributable evidence;
-4. avoid copying proprietary or promotional content;
-5. keep the proposed change narrow and reviewable;
-6. explain why the change is needed.
+  
 
-## Proposing an AI service
+## Ways to contribute 
 
-A service proposal should include:
+  
 
-- tool or service name;
-- primary service domain;
-- broad category;
-- official or otherwise permitted evidence URL;
-- date observed;
-- a short factual note;
-- any known ambiguity or conflicting evidence.
+Useful contributions include: 
 
-Prefer first-party evidence such as:
+  
 
-- an official product page;
-- official documentation;
-- an official service or sign-in page;
-- an official vendor announcement.
+- fixing bugs; 
 
-Third-party sources may support a proposal, but should not replace available first-party evidence.
+- improving tests and validation; 
 
-## Evidence requirements
+- improving documentation; 
 
-Every feed record must retain:
+- improving domain normalisation or deduplication; 
 
-- `source_name`
-- `source_url`
-- `observed_at`
+- improving provenance and conflict detection; 
 
-Evidence must be:
+- improving source-governance controls; 
 
-- publicly accessible;
-- relevant to the proposed service or domain;
-- attributable to a named source;
-- factual rather than promotional;
-- sufficient for another reviewer to verify the observation.
+- proposing or improving source adapters; 
 
-Do not submit:
+- developing vendor-specific export adapters; 
 
-- private or confidential information;
-- personal information;
-- copied proprietary descriptions;
-- copied rankings or reviews;
-- bulk exports from third-party directories;
-- evidence that requires bypassing access controls;
-- unsupported claims about service safety or risk.
+- improving artifact integrity or provenance controls; 
 
-## Risk ratings
+- reporting data-quality or security issues; 
 
-New records should normally use:
+- suggesting improvements to the governance model. 
 
-```text
-risk_rating: unknown
-```
+  
 
-`unknown` means the service has not been assessed under an approved, versioned risk methodology.
+Please do not submit third-party service catalogues or bulk domain lists as project data. 
 
-Do not assign `low`, `medium`, or `high` solely because:
+  
 
-- a service is well known;
-- a service is unfamiliar;
-- a service uses generative AI;
-- a service appears in another blocklist;
-- a reviewer personally approves or dislikes the service.
+## Before contributing 
 
-Until a versioned assessment methodology is published, risk-rating changes require maintainer review and supporting evidence.
+  
 
-## Source proposals
+Please: 
 
-A source proposal is different from a service proposal.
+  
 
-Registering a source does not authorise collection from it.
+1. search existing Issues and Pull Requests; 
 
-A source proposal should include:
+2. confirm the proposed change is not already being discussed; 
 
-- source name;
-- homepage URL;
-- proposed collection method;
-- proposed permitted metadata;
-- Terms or usage-policy URL where applicable;
-- robots URL for proposed HTML collection;
-- known licensing or attribution requirements;
-- the reason the source is useful;
-- known limitations or risks.
+3. keep the proposed change narrow and reviewable; 
 
-Supported source states are:
+4. explain the problem being solved; 
 
-```text
-pending-review
-approved
-prohibited
-```
+5. add or update tests where behaviour changes; 
 
-New sources must begin as:
+6. use synthetic or appropriately controlled example data; 
 
-```text
-pending-review
-```
+7. ensure that you have the right to submit any code, data, evidence, or other material included in the contribution. 
 
-Only a maintainer may approve a source policy.
+  
 
-Automated collection must not be introduced until the source policy is approved and the relevant adapter is tested.
+Do not copy proprietary datasets, descriptions, rankings, reviews, or other protected material into the repository. 
 
-## Unacceptable contributions
+  
 
-The project will not accept:
+## Operator-defined sources 
 
-- indiscriminate domain dumps;
-- copied proprietary directories;
-- copied marketing descriptions;
-- copied rankings, ratings, or reviews;
-- automated scraping without source approval;
-- unexplained risk scores;
-- automatic blocking recommendations;
-- intentionally misleading or poisoned records;
-- entries based on private user activity;
-- changes that remove provenance to make a record appear more certain;
-- source approval with no recorded reviewer or review date.
+  
 
-## Development setup
+Source selection belongs to the operator. 
 
-Requirements:
+  
 
-- Python 3.11 or later;
-- Git.
+The project does not prescribe or maintain a canonical list of AI services or third-party sources. 
 
-Clone the repository:
+  
 
-```bash
-git clone https://github.com/FyerLtd/FYER-AI-Visibility-Feed.git
-cd FYER-AI-Visibility-Feed
-```
+Operators may configure sources appropriate to their own requirements and are responsible for ensuring that their selection and use of those sources complies with applicable law, contractual terms, source policies, licensing requirements, and organisational controls. 
 
-Create a virtual environment:
+  
 
-```bash
-python -m venv .venv
-```
+A source being technically accessible does not by itself mean that collection from that source is approved. 
 
-Install the project and development dependencies:
+  
 
-```bash
-python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
-```
+## Source governance 
 
-On Windows PowerShell, activate the environment with:
+  
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+Sources configured for use with the project are governed through the source registry. 
 
-On Linux or macOS:
+  
 
-```bash
-source .venv/bin/activate
-```
+Registration does not authorise collection. 
 
-Run the test suite:
+  
 
-```bash
-python -m pytest -q
-```
+Supported source states are: 
 
-Run the CLI:
+  
 
-```bash
-python -m fyer_ai_visibility_feed.cli --help
-python -m fyer_ai_visibility_feed.cli version
-```
+```text 
 
-Build the governed manual feed:
+pending-review 
 
-```bash
-python -m fyer_ai_visibility_feed.cli build-seed \
-  --seed data/manual-seed.json \
-  --registry data/sources.json \
-  --output-dir outputs
-```
+approved 
 
-On Windows PowerShell, the build command can be entered on one line:
+prohibited 
 
-```powershell
-python -m fyer_ai_visibility_feed.cli build-seed --seed data/manual-seed.json --registry data/sources.json --output-dir outputs
-```
+``` 
 
-Expected current results include:
+  
 
-```text
-89 passed
-Built 3 canonical record(s).
-Conflicts: 0
-```
+A newly configured source should begin as: 
 
-## Tests
+  
 
-Add or update tests when changing:
+```text 
 
-- validation rules;
-- normalisation behaviour;
-- deduplication;
-- conflict detection;
-- source governance;
-- provenance handling;
-- loading or export formats;
-- CLI behaviour;
-- workflow behaviour.
+pending-review 
 
-A Pull Request should not reduce the test count without explaining why tests were removed or consolidated.
+``` 
 
-All tests and the governed feed build must pass before merge.
+  
 
-## Pull Request guidance
+Only an explicitly approved and valid source policy can become collection-eligible. 
 
-Keep Pull Requests focused.
+  
 
-A strong Pull Request includes:
+Where applicable, a source policy should record: 
 
-- a clear title;
-- a short explanation of the problem;
-- the proposed change;
-- evidence URLs where relevant;
-- tests for changed behaviour;
-- confirmation that the feed still builds;
-- any policy or compatibility impact.
+  
 
-Avoid mixing unrelated code, data, policy, and documentation changes unless they are required for one controlled migration.
+- source name; 
 
-## Review and approval
+- homepage URL; 
 
-Maintainers may request:
+- intended collection method; 
 
-- stronger evidence;
-- narrower scope;
-- additional tests;
-- a source-policy review;
-- changes to wording or metadata;
-- separation into multiple Pull Requests;
-- removal of copied or unsupported content.
+- permitted metadata; 
 
-Maintainer acceptance of a record means the contribution meets the project's evidence and governance requirements. It does not mean FYER Ltd endorses the listed service.
+- Terms or usage-policy URL; 
 
-## Security issues
+- robots reference for proposed HTML collection; 
 
-Do not disclose exploitable security vulnerabilities in a public Issue.
+- known licensing or attribution requirements; 
 
-Security reporting instructions will be maintained in `SECURITY.md`.
+- review date; 
 
-General data corrections and evidence improvements may use public Issues.
+- reviewer; 
 
-## Licence
+- governance notes; 
 
-By contributing, contributors agree that accepted contributions will be licensed under the repository's MIT License.
+- known limitations or risks. 
+
+  
+
+Automated collection should not be introduced for a source until its policy is approved and the relevant adapter has been tested. 
+
+  
+
+## Source adapters 
+
+  
+
+Contributions may propose support for a source type or source adapter. 
+
+  
+
+An adapter contribution should: 
+
+  
+
+- have a clearly defined purpose; 
+
+- minimise the data collected; 
+
+- preserve provenance; 
+
+- fail closed when source approval is absent or invalid; 
+
+- avoid bypassing authentication or technical access controls; 
+
+- handle failures predictably; 
+
+- include appropriate tests; 
+
+- document any source-specific requirements or limitations. 
+
+  
+
+Acceptance of an adapter does not make the associated source part of a FYER-maintained catalogue and does not itself authorise collection from that source. 
+
+  
+
+## Evidence and provenance 
+
+  
+
+Where a record contains source evidence, the project's provenance requirements must be preserved. 
+
+  
+
+Structured evidence currently includes: 
+
+  
+
+```text 
+
+source_name 
+
+source_url 
+
+observed_at 
+
+``` 
+
+  
+
+Evidence should be: 
+
+  
+
+- attributable to an identified source; 
+
+- relevant to the observation; 
+
+- factual; 
+
+- sufficient for another reviewer to understand the basis of the observation; 
+
+- limited to the metadata necessary for the project's purpose. 
+
+  
+
+Do not submit: 
+
+  
+
+- private or confidential information; 
+
+- personal information that is not necessary for the project; 
+
+- copied proprietary descriptions; 
+
+- copied rankings or reviews; 
+
+- bulk exports from third-party directories; 
+
+- proprietary third-party datasets; 
+
+- evidence obtained by bypassing access controls; 
+
+- unsupported claims about service safety or risk. 
+
+  
+
+## Risk ratings 
+
+  
+
+The canonical schema currently supports: 
+
+  
+
+```text 
+
+risk_rating: unknown 
+
+``` 
+
+  
+
+New or example records should normally retain `unknown`. 
+
+  
+
+`unknown` means that the service has not been assessed under an approved, versioned risk methodology. 
+
+  
+
+Do not assign `low`, `medium`, or `high` solely because: 
+
+  
+
+- a service is well known; 
+
+- a service is unfamiliar; 
+
+- a service uses generative AI; 
+
+- a service appears on another organisation's list; 
+
+- a reviewer personally approves or dislikes the service. 
+
+  
+
+Risk is contextual and may depend on organisational use, data, configuration, users, controls, purpose, and other factors. 
+
+  
+
+Until a versioned assessment methodology is published, changes away from `unknown` require maintainer review and supporting evidence. 
+
+  
+
+## Human review and enforcement 
+
+  
+
+FYER AI Visibility Feed provides visibility data. 
+
+  
+
+It is not itself a filtering or enforcement product. 
+
+  
+
+Feed records must not automatically become blocking rules solely because a service appears in the feed. 
+
+  
+
+Vendor-specific exporters may transform reviewed feed data into formats suitable for downstream security systems. Such outputs must remain subject to appropriate validation and human review before enforcement. 
+
+  
+
+Contributions that introduce automatic enforcement without an explicit review boundary will not be accepted. 
+
+  
+
+## Unacceptable contributions 
+
+  
+
+The project will not accept: 
+
+  
+
+- third-party service catalogues submitted as project data; 
+
+- indiscriminate domain dumps; 
+
+- copied proprietary directories; 
+
+- bulk exports from third-party datasets without appropriate rights; 
+
+- copied marketing descriptions; 
+
+- copied rankings, ratings, or reviews; 
+
+- automated collection that bypasses source governance; 
+
+- attempts to bypass authentication, CAPTCHAs, rate limits, or other technical access controls; 
+
+- unexplained risk scores; 
+
+- automatic blocking recommendations based solely on feed inclusion; 
+
+- intentionally misleading or poisoned records; 
+
+- entries derived from private user activity; 
+
+- changes that remove provenance to make an observation appear more certain; 
+
+- source approval with no recorded review; 
+
+- credentials, API keys, tokens, secrets, or other sensitive authentication material. 
+
+  
+
+## Development setup 
+
+  
+
+### Requirements 
+
+  
+
+- Python 3.11 or later 
+
+- Git 
+
+  
+
+Clone the repository: 
+
+  
+
+```bash 
+
+git clone https://github.com/FyerLtd/FYER-AI-Visibility-Feed.git 
+
+cd FYER-AI-Visibility-Feed 
+
+``` 
+
+  
+
+Create a virtual environment: 
+
+  
+
+```bash 
+
+python -m venv .venv 
+
+``` 
+
+  
+
+Install the project and development dependencies: 
+
+  
+
+```bash 
+
+python -m pip install --upgrade pip 
+
+python -m pip install -e ".[dev]" 
+
+``` 
+
+  
+
+On Windows PowerShell: 
+
+  
+
+```powershell 
+
+.venv\Scripts\Activate.ps1 
+
+``` 
+
+  
+
+On Linux or macOS: 
+
+  
+
+```bash 
+
+source .venv/bin/activate 
+
+``` 
+
+  
+
+Run the test suite: 
+
+  
+
+```bash 
+
+python -m pytest -q 
+
+``` 
+
+  
+
+The current baseline is: 
+
+  
+
+```text 
+
+97 passed 
+
+``` 
+
+  
+
+Run the CLI: 
+
+  
+
+```bash 
+
+python -m fyer_ai_visibility_feed.cli --help 
+
+python -m fyer_ai_visibility_feed.cli version 
+
+``` 
+
+  
+
+Build a governed feed using the configured input data and source registry: 
+
+  
+
+```bash 
+
+python -m fyer_ai_visibility_feed.cli build-seed \ 
+
+  --seed data/manual-seed.json \ 
+
+  --registry data/sources.json \ 
+
+  --output-dir outputs 
+
+``` 
+
+  
+
+On Windows PowerShell, use one line: 
+
+  
+
+```powershell 
+
+python -m fyer_ai_visibility_feed.cli build-seed --seed data/manual-seed.json --registry data/sources.json --output-dir outputs 
+
+``` 
+
+  
+
+A successful governed build produces the project's canonical artifacts. 
+
+  
+
+Do not rely on a fixed number of generated records as a test of correctness. Input datasets and synthetic fixtures may change over time. 
+
+  
+
+## Tests 
+
+  
+
+Add or update tests when changing: 
+
+  
+
+- validation rules; 
+
+- normalisation behaviour; 
+
+- deduplication; 
+
+- conflict detection; 
+
+- source governance; 
+
+- provenance handling; 
+
+- source adapters; 
+
+- loading or export formats; 
+
+- artifact integrity controls; 
+
+- CLI behaviour; 
+
+- workflow behaviour. 
+
+  
+
+A Pull Request should not reduce the test count without explaining why tests were removed, replaced, or consolidated. 
+
+  
+
+All applicable tests and the governed feed build must pass before merge. 
+
+  
+
+## Pull Request guidance 
+
+  
+
+Keep Pull Requests focused. 
+
+  
+
+A strong Pull Request includes: 
+
+  
+
+- a clear title; 
+
+- a short explanation of the problem; 
+
+- the proposed change; 
+
+- tests for changed behaviour; 
+
+- confirmation that the governed build still succeeds; 
+
+- source or technical documentation where relevant; 
+
+- any governance, security, policy, or compatibility impact. 
+
+  
+
+Avoid mixing unrelated code, data, policy, and documentation changes unless they are required for one controlled migration. 
+
+  
+
+## Review and approval 
+
+  
+
+Maintainers may request: 
+
+  
+
+- narrower scope; 
+
+- additional tests; 
+
+- stronger technical justification; 
+
+- stronger provenance; 
+
+- a source-policy review; 
+
+- changes to wording or metadata; 
+
+- separation into multiple Pull Requests; 
+
+- removal of copied or unsupported material; 
+
+- additional validation around an adapter or exporter. 
+
+  
+
+Maintainer acceptance means that a contribution meets the project's technical and governance requirements. 
+
+  
+
+It does not mean that FYER Ltd endorses any third-party service, source, product, vendor, or resulting enforcement decision. 
+
+  
+
+## Security issues 
+
+  
+
+Do not disclose exploitable security vulnerabilities in a public Issue. 
+
+  
+
+Follow the reporting process in: 
+
+  
+
+```text 
+
+SECURITY.md 
+
+``` 
+
+  
+
+General bugs, documentation corrections, governance improvements, and non-sensitive data-quality issues may use public Issues. 
+
+  
+
+Never include credentials, access tokens, API keys, secrets, or sensitive security information in an Issue, Pull Request, test fixture, or example configuration. 
+
+  
+
+## Licence and contribution rights 
+
+  
+
+This project is licensed under the MIT License. See `LICENSE`. 
+
+  
+
+By submitting a contribution, you agree that your contribution may be distributed under the repository's MIT License and that you have the right to submit the contributed material. 
+
+  
+
+The repository's MIT License does not grant rights to third-party websites, datasets, content, trademarks, or other materials referenced or processed by an operator. 
+
+  
+
+## Maintainer 
+
+  
+
+FYER AI Visibility Feed is maintained by FYER Ltd. 
+
+  
