@@ -390,7 +390,7 @@ python -m fyer_ai_visibility_feed.cli build-seed \
 The GitHub Actions workflow:
 
 1. checks out the repository;
-2. installs Python 3.11;
+2. installs Python 3.13;
 3. installs the project and development dependencies;
 4. verifies CLI help and version behaviour;
 5. runs the automated test suite;
