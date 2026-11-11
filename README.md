@@ -126,7 +126,7 @@ The project currently provides:
 
   
 
-- a Python 3.11 package and command-line interface; 
+- a Python 3.13 package and command-line interface; 
 
 - governance-record validation; 
 
@@ -436,7 +436,7 @@ The canonical feed itself should not be interpreted as a blocklist.
 
   
 
-- Python 3.11 or later 
+- Python 3.13 or later 
 
 - Git 
 
@@ -540,7 +540,7 @@ The CI process:
 
   
 
-1. installs the project using Python 3.11; 
+1. installs the project using Python 3.13; 
 
 2. checks the CLI help and version commands; 
 
